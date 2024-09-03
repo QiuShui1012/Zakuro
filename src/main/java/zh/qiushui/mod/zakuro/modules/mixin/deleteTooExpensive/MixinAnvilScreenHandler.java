@@ -10,7 +10,7 @@ public class MixinAnvilScreenHandler {
 
     @ModifyConstant(method = "updateResult", constant = @Constant(intValue = 40, ordinal = 2))
     private int updateInt(int input) {
-        return 9999999;
+        return Integer.MAX_VALUE;
     }
 
 }
