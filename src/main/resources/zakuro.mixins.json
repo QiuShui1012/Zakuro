@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "zh.qiushui.mod.zakuro.modules.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "deleteTooExpensive.MixinAnvilScreen",
+    "deleteTooExpensive.MixinAnvilScreenHandler",
+    "fixRodsCollisionBox.MixinEndRodBlock",
+    "fixRodsCollisionBox.MixinLightningRodBlock",
+    "fixZombieReinforcement.MixinZombieEntity"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

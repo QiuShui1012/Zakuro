@@ -1,0 +1,10 @@
+{
+  "text.autoconfig.zakuro.config": "Zakuro - 设置",
+  "text.autoconfig.zakuro.option.modules": "模块",
+  "text.autoconfig.zakuro.option.modules.deleteTooExpensive": "deleteTooExpensive | 移除过于昂贵",
+  "text.autoconfig.zakuro.option.modules.deleteTooExpensive.@Tooltip": "这个模块移除了铁砧中“过于昂贵”的提示，并保留了物品上的经验惩罚等级。",
+  "text.autoconfig.zakuro.option.modules.fixRodsCollisionBox": "fixRodsCollisionBox | 修复棒状方块碰撞箱",
+  "text.autoconfig.zakuro.option.modules.fixRodsCollisionBox.@Tooltip": "这个模块修复了棒状方块的碰撞箱，并将其同步于模型。",
+  "text.autoconfig.zakuro.option.modules.fixZombieReinforcement": "fixZombieReinforcement | 修复僵尸增援机制",
+  "text.autoconfig.zakuro.option.modules.fixZombieReinforcement.@Tooltip": "这个模块修复了僵尸增援机制，并允许僵尸和其变种生成它们的同类，就像1.21.2版本一样。"
+}
