@@ -22,7 +22,7 @@ public class ZakuroDataGenerator implements DataGeneratorEntrypoint {
 		@Override
 		public void generateTranslations(TranslationBuilder builder) {
 			initModulesTranslation(builder);
-			builder.add("text.autoconfig.zakuro.config", "Zakuro - Config");
+			builder.add("text.autoconfig.zakuro.title", "Zakuro - Config");
 			builder.add("text.autoconfig.zakuro.option.modules", "Modules");
 		}
 
