@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -18,9 +19,16 @@ import net.minecraft.world.SpawnHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Unique;
+
+import java.util.Objects;
+import java.util.UUID;
 
 @Mixin(ZombieEntity.class)
 public abstract class MixinZombieEntity extends HostileEntity {
+    @Unique
+    private UUID reinforcementCallerChargeModifierId = null;
+
     protected MixinZombieEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -67,8 +75,19 @@ public abstract class MixinZombieEntity extends HostileEntity {
                             zombieEntity.setTarget(livingEntity);
                             zombieEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(zombieEntity.getBlockPos()), SpawnReason.REINFORCEMENT, null, null);
                             serverWorld.spawnEntityAndPassengers(zombieEntity);
-                            this.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS)
-                                    .addPersistentModifier(new EntityAttributeModifier("Zombie reinforcement caller charge", -0.05F, EntityAttributeModifier.Operation.ADDITION));
+                            EntityAttributeModifier entityAttributeModifier;
+                            if (reinforcementCallerChargeModifierId != null) {
+                                EntityAttributeInstance entityAttributeInstance = this.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS);
+                                EntityAttributeModifier entityAttributeModifier1 = entityAttributeInstance.getModifier(reinforcementCallerChargeModifierId);
+                                double d = entityAttributeModifier1 != null ? entityAttributeModifier1.getValue() : 0.0;
+                                entityAttributeInstance.removeModifier(reinforcementCallerChargeModifierId);
+                                entityAttributeModifier = new EntityAttributeModifier("Zombie reinforcement caller charge", d - 0.05, EntityAttributeModifier.Operation.ADDITION);
+                            } else {
+                                entityAttributeModifier = new EntityAttributeModifier("Zombie reinforcement caller charge", -0.05F, EntityAttributeModifier.Operation.ADDITION);
+                            }
+                            this.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS).addPersistentModifier(entityAttributeModifier);
+                            reinforcementCallerChargeModifierId = entityAttributeModifier.getId();
+
                             zombieEntity.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS)
                                     .addPersistentModifier(new EntityAttributeModifier("Zombie reinforcement callee charge", -0.05F, EntityAttributeModifier.Operation.ADDITION));
                             break;
