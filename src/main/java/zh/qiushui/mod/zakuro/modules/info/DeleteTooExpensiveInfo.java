@@ -10,6 +10,6 @@ public class DeleteTooExpensiveInfo extends ModuleInfo {
 
     @Override
     public void initEnglishModuleDescription(FabricLanguageProvider.TranslationBuilder builder) {
-        builder.add(this.moduleDescriptionTranslationKey, "This module removed the \"Too Expensive!\" tip on the anvil and kept the penalty level on the item. ");
+        builder.add(this.moduleDescriptionTranslationKey, "This module removes the \"Too Expensive!\" tip on the anvil and keeps the penalty level on the item.");
     }
 }

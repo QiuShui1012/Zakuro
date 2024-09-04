@@ -3,11 +3,13 @@
   "package": "zh.qiushui.mod.zakuro.modules.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "deleteTooExpensive.MixinAnvilScreen",
     "deleteTooExpensive.MixinAnvilScreenHandler",
     "fixRodsCollisionBox.MixinEndRodBlock",
     "fixRodsCollisionBox.MixinLightningRodBlock",
     "fixZombieReinforcement.MixinZombieEntity"
+  ],
+  "client": [
+    "deleteTooExpensive.MixinAnvilScreen"
   ],
   "injectors": {
     "defaultRequire": 1

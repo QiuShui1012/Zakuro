@@ -1,10 +1,10 @@
 {
-  "text.autoconfig.zakuro.title": "Zakuro - Config",
   "text.autoconfig.zakuro.option.modules": "Modules",
   "text.autoconfig.zakuro.option.modules.deleteTooExpensive": "deleteTooExpensive",
-  "text.autoconfig.zakuro.option.modules.deleteTooExpensive.@Tooltip": "This module removed the \"Too Expensive!\" tip on the anvil and kept the penalty level on the item. ",
+  "text.autoconfig.zakuro.option.modules.deleteTooExpensive.@Tooltip": "This module removes the \"Too Expensive!\" tip on the anvil and keeps the penalty level on the item.",
   "text.autoconfig.zakuro.option.modules.fixRodsCollisionBox": "fixRodsCollisionBox",
-  "text.autoconfig.zakuro.option.modules.fixRodsCollisionBox.@Tooltip": "This module fixes the rod's collision box and syncs it to its model.",
+  "text.autoconfig.zakuro.option.modules.fixRodsCollisionBox.@Tooltip": "This module fixes the rods' collision box and syncs its shape to the rods' model.",
   "text.autoconfig.zakuro.option.modules.fixZombieReinforcement": "fixZombieReinforcement",
-  "text.autoconfig.zakuro.option.modules.fixZombieReinforcement.@Tooltip": "This module fixes the zombie reinforcement and allows zombies and their variants to spawn clones of themselves, just like the 1.21.2 version does."
+  "text.autoconfig.zakuro.option.modules.fixZombieReinforcement.@Tooltip": "This module fixes the zombie reinforcement and allows zombies and their variants to spawn clones of themselves, just like Minecraft 1.21.2 version does.",
+  "text.autoconfig.zakuro.title": "Zakuro - Config"
 }

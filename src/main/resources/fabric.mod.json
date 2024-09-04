@@ -13,6 +13,7 @@
 		"sources": "https://github.com/QiuShui1012/Zakuro"
 	},
 	"license": "MIT",
+	"icon": "assets/zakuro/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -28,13 +29,16 @@
 	"mixins": [
 		"zakuro.mixins.json"
 	],
+	"accessWidener" : "zakuro.accessWidener",
 	"depends": {
 		"fabricloader": ">=0.15.11",
 		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*",
-		"modmenu": ">=7.2.2",
 		"cloth-config": ">=11.1.118"
+	},
+	"recommends": {
+		"modmenu": ">=7.2.2"
 	},
 	"suggests": {
 		"core-lib": ">=1.0.0"

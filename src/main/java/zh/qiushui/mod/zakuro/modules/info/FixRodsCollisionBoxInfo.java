@@ -10,6 +10,6 @@ public class FixRodsCollisionBoxInfo extends ModuleInfo {
 
     @Override
     public void initEnglishModuleDescription(FabricLanguageProvider.TranslationBuilder builder) {
-        builder.add(this.moduleDescriptionTranslationKey, "This module fixes the rod's collision box and syncs it to its model.");
+        builder.add(this.moduleDescriptionTranslationKey, "This module fixes the rods' collision box and syncs its shape to the rods' model.");
     }
 }

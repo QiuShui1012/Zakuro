@@ -18,7 +18,7 @@ public class ZakuroConfig implements ConfigData {
 
         @ConfigEntry.Gui.RequiresRestart
         @ConfigEntry.Gui.Tooltip
-        public boolean fixRodsCollisionBox = true;
+        public boolean fixRodsCollisionBox = false;
 
         @ConfigEntry.Gui.RequiresRestart
         @ConfigEntry.Gui.Tooltip
