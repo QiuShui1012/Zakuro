@@ -1,0 +1,74 @@
+html {
+    font-family: Saira, "梦源黑体 SC", 微软雅黑, sans-serif;
+    background-color: azure;
+    text-align: center;
+}
+
+header {
+    min-width: 101%;
+    min-height: 5%;
+    margin-left: -0.5%;
+    text-align: left;
+    box-shadow: 0 5px 5px #85ffea;
+    p {
+        margin-top: -0.2%;
+        margin-left: 0.4%;
+        font-weight: bold;
+        font-size: 1.7em;
+    }
+}
+
+div#languageDiv {
+    margin-top: -4.55%;
+    margin-right: 1px;
+    float: right;
+    min-width: 10%;
+    a {
+        background-color: #d3f2f2;
+        border-radius: 7px;
+        margin-right: 5%;
+        font-size: 1.3em;
+        color: black;
+        text-decoration-line: none;
+    }
+}
+
+div#bodyDiv {
+    background-color: #dfeded;
+    border-radius: 5px;
+    max-width: 95%;
+    margin-top: 2.3%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+p#title {
+    margin-bottom: 0.5%;
+    font-weight: bolder;
+    font-size: 2.1em;
+}
+
+table#modulesList {
+    background-color: #cedbdb;
+    border-collapse: collapse;
+    border-radius: 7px;
+    min-width: 99%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    table-layout: fixed;
+    th {
+        font-size: 1.6em;
+    }
+    th#modulesListHeadName {
+        width: 30%;
+    }
+    th#modulesListHeadDesc {
+        width: 69%;
+    }
+    td {
+        text-align: center;
+        font-size: 1.1em;
+    }
+}
