@@ -1,4 +1,5 @@
 {
+  "option.zakuro.category": "Zakuro",
   "text.autoconfig.zakuro.option.modules": "Modules",
   "text.autoconfig.zakuro.option.modules.deleteTooExpensive": "deleteTooExpensive",
   "text.autoconfig.zakuro.option.modules.deleteTooExpensive.@Tooltip": "This module removes the \"Too Expensive!\" tip on the anvil and keeps the penalty level on the item.",

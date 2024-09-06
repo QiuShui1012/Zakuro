@@ -6,6 +6,7 @@ import zh.qiushui.mod.zakuro.modules.info.FixZombieReinforcementInfo;
 import zh.qiushui.mod.zakuro.api.module.ModuleInfo;
 import zh.qiushui.mod.zakuro.modules.info.DeleteTooExpensiveInfo;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +17,19 @@ public class Modules {
             new FixZombieReinforcementInfo()
     );
 
-    public static final Map<String, Boolean> MODULE_ENABLED_MAP = Map.of(
-            MODULE_INFO_LIST.get(0).getRawModuleId(), ZakuroUtil.config.modules.deleteTooExpensive,
-            MODULE_INFO_LIST.get(1).getRawModuleId(), ZakuroUtil.config.modules.fixRodsCollisionBox,
-            MODULE_INFO_LIST.get(2).getRawModuleId(), ZakuroUtil.config.modules.fixZombieReinforcement
-    );
+    public static final Map<String, Boolean> MODULE_ENABLED_MAP;
+
+    static {
+        Map<String, Boolean> moduleEnabledMap;
+        try {
+            moduleEnabledMap = Map.of(
+                    MODULE_INFO_LIST.get(0).getRawModuleId(), ZakuroUtil.config.modules.deleteTooExpensive,
+                    MODULE_INFO_LIST.get(1).getRawModuleId(), ZakuroUtil.config.modules.fixRodsCollisionBox,
+                    MODULE_INFO_LIST.get(2).getRawModuleId(), ZakuroUtil.config.modules.fixZombieReinforcement
+            );
+        } catch (NullPointerException ignored) {
+            moduleEnabledMap = new HashMap<>();
+        }
+        MODULE_ENABLED_MAP = moduleEnabledMap;
+    }
 }

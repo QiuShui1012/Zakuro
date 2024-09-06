@@ -9,15 +9,19 @@ import java.util.Locale;
 
 public abstract class ModuleInfo {
     protected final String rawModuleId;
+    protected final String rawModuleDescription;
+    protected final String abbreviate;
     protected final Identifier moduleId;
-    protected final String moduleNameTranslationKey;
-    protected final String moduleDescriptionTranslationKey;
+    public final String moduleNameTranslationKey;
+    public final String moduleDescriptionTranslationKey;
 
-    public ModuleInfo(String moduleId) {
+    public ModuleInfo(String moduleId, String moduleDesc) {
         this.rawModuleId = moduleId;
+        this.rawModuleDescription = moduleDesc;
+        this.abbreviate = moduleId.charAt(0) + ZakuroUtil.separateStringUpperAndLower(moduleId).getLeft();
         this.moduleId = ZakuroUtil.id(moduleId.toLowerCase(Locale.ROOT));
-        this.moduleNameTranslationKey = "text.autoconfig." + ZakuroUtil.MOD_ID + ".option.modules." + moduleId;
-        this.moduleDescriptionTranslationKey = "text.autoconfig." + ZakuroUtil.MOD_ID + ".option.modules." + moduleId + ".@Tooltip";
+        this.moduleNameTranslationKey = ZakuroUtil.buildTranslationKey("text.autoconfig.", ".option.modules." + moduleId);
+        this.moduleDescriptionTranslationKey = ZakuroUtil.buildTranslationKey("text.autoconfig.", ".option.modules." + moduleId + ".@Tooltip");
     }
 
     public Identifier getModuleId() {
@@ -40,9 +44,19 @@ public abstract class ModuleInfo {
         builder.add(this.moduleNameTranslationKey, getRawModuleId());
     }
 
-    public abstract void initEnglishModuleDescription(FabricLanguageProvider.TranslationBuilder builder);
+    public void initEnglishModuleDescription(FabricLanguageProvider.TranslationBuilder builder) {
+        builder.add(this.moduleDescriptionTranslationKey, getRawModuleDescription());
+    }
 
     public String getRawModuleId() {
         return this.rawModuleId;
+    }
+
+    public String getRawModuleDescription() {
+        return this.rawModuleDescription;
+    }
+
+    public String getModuleAbbreviate() {
+        return this.abbreviate;
     }
 }

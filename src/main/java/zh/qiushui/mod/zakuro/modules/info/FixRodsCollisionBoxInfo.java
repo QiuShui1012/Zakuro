@@ -5,11 +5,7 @@ import zh.qiushui.mod.zakuro.api.module.ModuleInfo;
 
 public class FixRodsCollisionBoxInfo extends ModuleInfo {
     public FixRodsCollisionBoxInfo() {
-        super("fixRodsCollisionBox");
-    }
-
-    @Override
-    public void initEnglishModuleDescription(FabricLanguageProvider.TranslationBuilder builder) {
-        builder.add(this.moduleDescriptionTranslationKey, "This module fixes the rods' collision box and syncs its shape to the rods' model.");
+        super("fixRodsCollisionBox",
+                "This module fixes the rods' collision box and syncs its shape to the rods' model.");
     }
 }

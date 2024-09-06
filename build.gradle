@@ -12,6 +12,10 @@ base {
 
 repositories {
 	maven {
+		name "Gradle Local Repository"
+		url "https://repo.gradle.org/gradle/libs-releases-local/"
+	}
+	maven {
 		name "TerraformersMC"
 		url "https://maven.terraformersmc.com/"
 	}
@@ -48,6 +52,9 @@ dependencies {
 	modImplementation("me.shedaniel.cloth:cloth-config-fabric:${project.clothconfig_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
+
+	// Jsoup
+	implementation include("org.jsoup:jsoup:${project.jsoup_version}")
 }
 
 loom {
