@@ -34,7 +34,7 @@ public class ModulesListHtmlGen {
 
     public static void genModulesList() {
         try {
-            genLanguageModulesList("en-US", "en_us");
+            genLanguageModulesList(null, "en_us");
             genLanguageModulesList("zh-CN", "zh_cn");
         } catch (IOException ignored) {}
     }
@@ -69,7 +69,7 @@ public class ModulesListHtmlGen {
         for (String language : HtmlI18n.getLanguages()) {
             Element aLan = languageDiv.appendElement("a");
             aLan.attr("href",
-                    "index" + (htmlLanguageCodeIsNull ? "" : "_" + language) + ".html");
+                    "index" + (language.equals("en-US") ? "" : "_" + language) + ".html");
             aLan.appendChild(new TextNode(language));
         }
 
@@ -109,7 +109,8 @@ public class ModulesListHtmlGen {
                     tDDesc.appendChild(new TextNode(ZakuroUtil.translate(minecraftLanguageCode, info.moduleDescriptionTranslationKey, info.getRawModuleDescription())));
         }
 
-        FileOutputStream fos = new FileOutputStream(PROJECT_PATH + "index_" + htmlTrueLanguageCode + ".html", false);
+        FileOutputStream fos = new FileOutputStream(PROJECT_PATH +
+                "index" + (htmlLanguageCodeIsNull ? "" : "_" + htmlTrueLanguageCode) + ".html", false);
         OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
         osw.write(html.html());
         osw.close();
