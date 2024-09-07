@@ -9,8 +9,8 @@ import zh.qiushui.mod.zakuro.html.HtmlI18n;
 
 public class FixBlocksOutlineShapeInfo extends ModuleInfo {
     public FixBlocksOutlineShapeInfo() {
-        super("fixBlocksOutlineBox",
-                "This module fixes the blocks' outline box and syncs it to the blocks' model.");
+        super("fixBlocksOutlineShape",
+                "This module fixes the blocks' outline shape and syncs it to the blocks' model.");
     }
 
     @Override
