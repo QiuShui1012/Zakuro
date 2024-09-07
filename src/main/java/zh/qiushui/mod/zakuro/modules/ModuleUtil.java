@@ -1,19 +1,26 @@
 package zh.qiushui.mod.zakuro.modules;
 
-import zh.qiushui.mod.zakuro.ZakuroUtil;
+import zh.qiushui.mod.zakuro.Zakuro;
+import zh.qiushui.mod.zakuro.api.module.ModuleInfo;
 
 public class ModuleUtil {
-    public static String calculateBasePackageName(Class<?> packageRootClass, String mixinClassName) {
-        String basePackageName;
-        int left = packageRootClass.getPackageName().length() + 1;
-        basePackageName = mixinClassName.substring(left);
-        int right = basePackageName.indexOf(".");
-        basePackageName = basePackageName.substring(0, right);
-        return basePackageName;
+    public static String calculateModuleName(Class<?> basePackageClass, String mixinClassName) {
+        String moduleName;
+        moduleName = mixinClassName.replace(basePackageClass.getPackageName() + ".", "");
+        int rightDot = mixinClassName.lastIndexOf(".") - 1;
+        return moduleName.substring(0, rightDot);
     }
 
-    public static boolean shouldApplyMixin(String basePackageName) {
-        ZakuroUtil.initConfig();
-        return Modules.MODULE_ENABLED_MAP.get(basePackageName);
+    public static boolean shouldApplyMixin(String name) {
+        Zakuro.initConfig();
+
+        String baseModuleName = name.substring(0, name.indexOf(".") - 1);
+        for (ModuleInfo info : Modules.MODULE_INFO_LIST) {
+            if (info.getRawModuleId().equals(baseModuleName)) {
+                return info.shouldApplyMixin(name);
+            }
+        }
+
+        return false;
     }
 }

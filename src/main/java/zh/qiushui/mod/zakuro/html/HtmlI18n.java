@@ -7,11 +7,13 @@ import java.util.Map;
 public class HtmlI18n {
     private static final Map<String, String> I18N_MAP = Map.of(
             // en-US
+            "en-US.blocks", "The following are supported blocks:",
             "en-US.title", "Zakuro Modules List",
             "en-US.thead.name", "Module Name",
             "en-US.thead.desc", "Description",
 
             // zh-CN
+            "zh-CN.blocks", "以下是支持的方块：",
             "zh-CN.title", "Zakuro模块列表",
             "zh-CN.thead.name", "模块名",
             "zh-CN.thead.desc", "描述"
@@ -21,8 +23,8 @@ public class HtmlI18n {
         return I18N_MAP.get(key);
     }
 
-    public static String translate(String code, String suffixNotStartsWithDot) {
-        return I18N_MAP.get(code + "." + suffixNotStartsWithDot);
+    public static String translate(String code, String suffixStartsWithoutDot) {
+        return I18N_MAP.get(code + "." + suffixStartsWithoutDot);
     }
 
     public static List<String> getLanguages() {

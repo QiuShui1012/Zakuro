@@ -4,8 +4,11 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "deleteTooExpensive.MixinAnvilScreenHandler",
-    "fixRodsCollisionBox.MixinEndRodBlock",
-    "fixRodsCollisionBox.MixinLightningRodBlock",
+    "fixBlocksOutlineShape.endRod.MixinEndRodBlock",
+    "fixBlocksOutlineShape.fence.MixinFenceBlock",
+    "fixBlocksOutlineShape.lightningRod.MixinLightningRodBlock",
+    "fixBlocksOutlineShape.sign.MixinSignBlock",
+    "fixBlocksOutlineShape.signWall.MixinWallSignBlock",
     "fixZombieReinforcement.MixinZombieEntity"
   ],
   "client": [

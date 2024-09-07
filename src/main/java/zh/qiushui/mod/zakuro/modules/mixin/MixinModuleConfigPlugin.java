@@ -16,12 +16,12 @@ public class MixinModuleConfigPlugin implements IMixinConfigPlugin {
 
     @Override
     public String getRefMapperConfig() {
-        return "";
+        return null;
     }
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        String basePackageName = ModuleUtil.calculateBasePackageName(this.getClass(), mixinClassName);
+        String basePackageName = ModuleUtil.calculateModuleName(this.getClass(), mixinClassName);
         return ModuleUtil.shouldApplyMixin(basePackageName);
     }
 

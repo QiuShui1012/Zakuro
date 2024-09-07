@@ -3,7 +3,7 @@ package zh.qiushui.mod.zakuro.html;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.TextNode;
-import zh.qiushui.mod.zakuro.ZakuroUtil;
+import zh.qiushui.mod.zakuro.Zakuro;
 import zh.qiushui.mod.zakuro.api.module.ModuleInfo;
 import zh.qiushui.mod.zakuro.modules.Modules;
 
@@ -39,17 +39,17 @@ public class ModulesListHtmlGen {
         } catch (IOException ignored) {}
     }
 
-    private static void genLanguageModulesList(String htmlLanguageCode, String minecraftLanguageCode) throws IOException {
-        boolean htmlLanguageCodeIsNull = htmlLanguageCode == null;
-        String htmlTrueLanguageCode = htmlLanguageCodeIsNull ? "en-US" : htmlLanguageCode;
+    private static void genLanguageModulesList(String htmlLangCode, String mcLangCode) throws IOException {
+        boolean htmlLangCodeIsNull = htmlLangCode == null;
+        String htmlTrueLangCode = htmlLangCodeIsNull ? "en-US" : htmlLangCode;
 
         Document html = Document.createShell(PROJECT_PATH +
-                "index" + (htmlLanguageCodeIsNull ? "" : "_" + htmlTrueLanguageCode) + ".html");
+                "index" + (htmlLangCodeIsNull ? "" : "_" + htmlTrueLangCode) + ".html");
         html.charset(Charset.defaultCharset());
-        html.title(HtmlI18n.translate(htmlTrueLanguageCode, "title"));
+        html.title(HtmlI18n.translate(htmlTrueLangCode, "title"));
 
         Element htmlEl = htmlEl(html);
-        htmlEl.attr("lang", htmlTrueLanguageCode);
+        htmlEl.attr("lang", htmlTrueLangCode);
 
         Element head = html.head();
 
@@ -85,7 +85,7 @@ public class ModulesListHtmlGen {
 
         Element pTitle = div.appendElement("p");
         pTitle.id("title");
-        pTitle.appendChild(new TextNode(HtmlI18n.translate(htmlTrueLanguageCode, "title")));
+        pTitle.appendChild(new TextNode(HtmlI18n.translate(htmlTrueLangCode, "title")));
 
         Element table = div.appendElement("table");
         table.id("modulesList");
@@ -94,28 +94,20 @@ public class ModulesListHtmlGen {
                 Element tR = tHead.appendElement("tr");
                     Element tHName = tR.appendElement("th");
                     tHName.id("modulesListHeadName");
-                    tHName.appendChild(new TextNode(HtmlI18n.translate(htmlTrueLanguageCode, "thead.name")));
+                    tHName.appendChild(new TextNode(HtmlI18n.translate(htmlTrueLangCode, "thead.name")));
                     Element tHDesc = tR.appendElement("th");
                     tHDesc.id("modulesListHeadDesc");
-                    tHDesc.appendChild(new TextNode(HtmlI18n.translate(htmlTrueLanguageCode, "thead.desc")));
+                    tHDesc.appendChild(new TextNode(HtmlI18n.translate(htmlTrueLangCode, "thead.desc")));
 
         for (ModuleInfo info : Modules.MODULE_INFO_LIST) {
             String tBodyId = "modulesListBody" + info.getModuleAbbreviate().toUpperCase(Locale.ROOT);
             Element tBody = table.appendElement("tbody");
             tBody.id(tBodyId);
-                Element tRModule = tBody.appendElement("tr");
-                    Element tDName = tRModule.appendElement("td");
-                    tDName.addClass("moduleName");
-                    tDName.id(tBodyId + "Name");
-                    tDName.appendChild(new TextNode(ZakuroUtil.translate(minecraftLanguageCode, info.moduleNameTranslationKey, info.getRawModuleId())));
-                    Element tDDesc = tRModule.appendElement("td");
-                    tDDesc.addClass("moduleDesc");
-                    tDDesc.id(tBodyId + "Desc");
-                    tDDesc.appendChild(new TextNode(ZakuroUtil.translate(minecraftLanguageCode, info.moduleDescriptionTranslationKey, info.getRawModuleDescription())));
+            info.appendHtmlExtra(tBody, htmlTrueLangCode, mcLangCode);
         }
 
         FileOutputStream fos = new FileOutputStream(PROJECT_PATH +
-                "index" + (htmlLanguageCodeIsNull ? "" : "_" + htmlTrueLanguageCode) + ".html", false);
+                "index" + (htmlLangCodeIsNull ? "" : "_" + htmlTrueLangCode) + ".html", false);
         OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
         osw.write(html.html());
         osw.close();

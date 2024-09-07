@@ -1,4 +1,4 @@
-package zh.qiushui.mod.zakuro.modules.mixin.fixRodsCollisionBox;
+package zh.qiushui.mod.zakuro.modules.mixin.fixBlocksOutlineShape.lightningRod;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

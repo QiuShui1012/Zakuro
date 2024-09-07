@@ -17,10 +17,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"zh.qiushui.mod.zakuro.Zakuro"
+			"zh.qiushui.mod.zakuro.init.CommonModInitializer"
 		],
 		"fabric-datagen": [
-			"zh.qiushui.mod.zakuro.ZakuroDataGenerator"
+			"zh.qiushui.mod.zakuro.datagen.ZakuroDataGenerator"
 		],
 		"modmenu": [
 			"zh.qiushui.mod.zakuro.config.ModMenuImpl"

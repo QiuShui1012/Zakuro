@@ -52,12 +52,15 @@ p#title {
 
 table#modulesList {
     background-color: #cedbdb;
-    border-collapse: collapse;
     border-radius: 7px;
     min-width: 99%;
     margin-left: 0.5%;
     margin-right: 0.5%;
     table-layout: fixed;
+    tbody td {
+        background-color: #e0e4e4;
+        border-radius: 7px;
+    }
     th {
         font-size: 1.6em;
     }
@@ -68,7 +71,24 @@ table#modulesList {
         width: 69%;
     }
     td {
-        text-align: center;
+        text-align: left;
+
+        text-indent: 1%;
         font-size: 1.1em;
+    }
+}
+
+div#blocksDiv {
+    min-width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    ul {
+        text-indent: 0;
+        margin-top: 0.4%;
+        margin-bottom: 0.5%;
+        margin-left: -0.3%;
+        line-height: 120%;
     }
 }
