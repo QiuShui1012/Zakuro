@@ -4,12 +4,15 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "deleteTooExpensive.MixinAnvilScreenHandler",
+    "fixBlocksOutlineShape.candle.MixinCandleBlock",
     "fixBlocksOutlineShape.endRod.MixinEndRodBlock",
     "fixBlocksOutlineShape.fence.MixinFenceBlock",
+    "fixBlocksOutlineShape.fenceGate.MixinFenceGateBlock",
     "fixBlocksOutlineShape.lightningRod.MixinLightningRodBlock",
     "fixBlocksOutlineShape.sign.MixinSignBlock",
     "fixBlocksOutlineShape.signWall.MixinWallSignBlock",
-    "fixZombieReinforcement.MixinZombieEntity"
+    "fixZombieReinforcement.MixinZombieEntity",
+    "syncFenceGatesInWallProperty.MixinFenceGateBlock"
   ],
   "client": [
     "deleteTooExpensive.MixinAnvilScreen"

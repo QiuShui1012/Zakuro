@@ -24,11 +24,17 @@ public class ZakuroConfig implements ConfigData {
         @ConfigEntry.Gui.RequiresRestart
         @ConfigEntry.Gui.Tooltip
         public boolean fixZombieReinforcement = false;
+
+        @ConfigEntry.Gui.RequiresRestart
+        @ConfigEntry.Gui.Tooltip
+        public boolean syncFenceGatesInWallProperty = false;
     }
 
     public static class FixBlocksOutlineShapeConfig {
+        public boolean candle = false;
         public boolean endRod = false;
         public boolean fence = false;
+        public boolean fenceGate = false;
         public boolean lightningRod = false;
         public boolean sign = false;
         public boolean signWall = false;

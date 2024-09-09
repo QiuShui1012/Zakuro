@@ -73,4 +73,8 @@ public class Zakuro {
 
         return new Pair<>(upper.toString(), lower.toString());
     }
+
+    public static double calculateOneAndAHalfHeightBlockMaxY(boolean isCollision, double maxYCommon) {
+        return isCollision ? 24.0 : maxYCommon;
+    }
 }

@@ -15,8 +15,10 @@ public class FixBlocksOutlineShapeInfo extends ModuleInfo {
 
     @Override
     public void initEnglishModuleExtra(FabricLanguageProvider.TranslationBuilder builder) {
+        builder.add(this.moduleNameTranslationKey + ".candle", "Candle");
         builder.add(this.moduleNameTranslationKey + ".endRod", "End Rod");
         builder.add(this.moduleNameTranslationKey + ".fence", "Fence");
+        builder.add(this.moduleNameTranslationKey + ".fenceGate", "Fence Gate");
         builder.add(this.moduleNameTranslationKey + ".lightningRod", "Lightning Rod");
         builder.add(this.moduleNameTranslationKey + ".sign", "Sign");
         builder.add(this.moduleNameTranslationKey + ".signWall", "Sign On The Wall");
@@ -24,8 +26,10 @@ public class FixBlocksOutlineShapeInfo extends ModuleInfo {
 
     @Override
     protected void registerConfigs() {
+        configs.put(this.rawModuleId + ".candle", Zakuro.config.modules.fixBlocksOutlineShape.candle);
         configs.put(this.rawModuleId + ".endRod", Zakuro.config.modules.fixBlocksOutlineShape.endRod);
         configs.put(this.rawModuleId + ".fence", Zakuro.config.modules.fixBlocksOutlineShape.fence);
+        configs.put(this.rawModuleId + ".fenceGate", Zakuro.config.modules.fixBlocksOutlineShape.fenceGate);
         configs.put(this.rawModuleId + ".lightningRod", Zakuro.config.modules.fixBlocksOutlineShape.lightningRod);
         configs.put(this.rawModuleId + ".sign", Zakuro.config.modules.fixBlocksOutlineShape.sign);
         configs.put(this.rawModuleId + ".signWall", Zakuro.config.modules.fixBlocksOutlineShape.signWall);
@@ -40,8 +44,14 @@ public class FixBlocksOutlineShapeInfo extends ModuleInfo {
 
         Element div = tDDesc.appendElement("div");
         div.id("blocksDiv");
-        div.appendChild(new TextNode(HtmlI18n.translate(htmlLangCode, "blocks")));
+        div.appendChild(new TextNode(HtmlI18n.translate(htmlLangCode, "fbos.blocks")));
             Element blockList = div.appendElement("ul");
+                Element candle = blockList.appendElement("li");
+                candle.appendChild(new TextNode(Zakuro.translate(
+                        mcLangCode,
+                        this.moduleNameTranslationKey + ".candle", "Candle"
+                )));
+
                 Element endRod = blockList.appendElement("li");
                 endRod.appendChild(new TextNode(Zakuro.translate(
                         mcLangCode,
@@ -52,6 +62,12 @@ public class FixBlocksOutlineShapeInfo extends ModuleInfo {
                 fence.appendChild(new TextNode(Zakuro.translate(
                         mcLangCode,
                         this.moduleNameTranslationKey + ".fence", "Fence"
+                )));
+
+                Element fenceGate = blockList.appendElement("li");
+                fenceGate.appendChild(new TextNode(Zakuro.translate(
+                        mcLangCode,
+                        this.moduleNameTranslationKey + ".fenceGate", "Fence Gate"
                 )));
 
                 Element lightningRod = blockList.appendElement("li");
@@ -71,5 +87,7 @@ public class FixBlocksOutlineShapeInfo extends ModuleInfo {
                         mcLangCode,
                         this.moduleNameTranslationKey + ".signWall", "Sign On The Wall"
                 )));
+
+        tDDesc.appendChild(new TextNode(HtmlI18n.translate(htmlLangCode, "fbos.note")));
     }
 }
