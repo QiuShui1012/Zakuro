@@ -27,12 +27,12 @@ header {
     }
     div#languageDiv {
         float: right;
-        min-width: 4%;
+        min-width: 4.5%;
         margin-right: 0.5%;
         a {
             color: black;
-            font-size: 1.4em;
-            margin-right: 2%;
+            font-size: 1.6em;
+            margin-right: 3%;
         }
     }
 }

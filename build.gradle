@@ -85,7 +85,10 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}"}
+		rename { "${it}_${base.archivesName.get()}"}
+	}
+	java {
+		exclude 'zh/qiushui/mod/zakuro/html/**'
 	}
 }
 
