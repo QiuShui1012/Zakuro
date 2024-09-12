@@ -11,6 +11,6 @@ public class FixZombieReinforcementInfo extends ModuleInfo {
 
     @Override
     protected void registerConfigs() {
-        configs.put(this.rawModuleId, Zakuro.config.modules.fixZombieReinforcement);
+        configs.put(this.rawModuleId, Zakuro.config.fixZombieReinforcement);
     }
 }

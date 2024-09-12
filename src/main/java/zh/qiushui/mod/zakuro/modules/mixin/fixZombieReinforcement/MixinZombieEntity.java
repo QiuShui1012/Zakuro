@@ -13,6 +13,7 @@ import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.SpawnHelper;
@@ -20,6 +21,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
+import zh.qiushui.mod.zakuro.Zakuro;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -39,6 +41,11 @@ public abstract class MixinZombieEntity extends HostileEntity {
      */
     @Overwrite
     public boolean damage(DamageSource source, float amount) {
+        return this.damageZombie(source, amount);
+    }
+
+    @Unique
+    public <Z extends ZombieEntity> boolean damageZombie(DamageSource source, float amount) {
         if (!super.damage(source, amount)) {
             return false;
         } else if (this.getWorld() instanceof ServerWorld serverWorld) {
@@ -49,13 +56,13 @@ public abstract class MixinZombieEntity extends HostileEntity {
 
             if (livingEntity != null
                     && this.getWorld().getDifficulty() == Difficulty.HARD
-                    && (double)this.random.nextFloat() < this.getAttributeValue(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS)
+                    && this.random.nextFloat() < this.getAttributeValue(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS)
                     && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
                 int i = MathHelper.floor(this.getX());
                 int j = MathHelper.floor(this.getY());
                 int k = MathHelper.floor(this.getZ());
-                EntityType<? extends ZombieEntity> entityType = this.getType();
-                ZombieEntity zombieEntity = entityType.create(this.getWorld());
+                EntityType<Z> entityType = this.getZombieType();
+                Z zombieEntity = entityType.create(this.getWorld());
                 if (zombieEntity == null) {
                     return true;
                 }
@@ -76,19 +83,19 @@ public abstract class MixinZombieEntity extends HostileEntity {
                             zombieEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(zombieEntity.getBlockPos()), SpawnReason.REINFORCEMENT, null, null);
                             serverWorld.spawnEntityAndPassengers(zombieEntity);
                             EntityAttributeModifier entityAttributeModifier;
-                            if (reinforcementCallerChargeModifierId != null) {
-                                EntityAttributeInstance entityAttributeInstance = this.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS);
-                                EntityAttributeModifier entityAttributeModifier1 = entityAttributeInstance.getModifier(reinforcementCallerChargeModifierId);
+                            EntityAttributeInstance entityAttributeInstance = this.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS);
+                            EntityAttributeModifier entityAttributeModifier1 = Objects.requireNonNull(entityAttributeInstance).getModifier(reinforcementCallerChargeModifierId);
+                            if (this.reinforcementCallerChargeModifierId != null) {
                                 double d = entityAttributeModifier1 != null ? entityAttributeModifier1.getValue() : 0.0;
-                                entityAttributeInstance.removeModifier(reinforcementCallerChargeModifierId);
-                                entityAttributeModifier = new EntityAttributeModifier("Zombie reinforcement caller charge", d - 0.05, EntityAttributeModifier.Operation.ADDITION);
+                                entityAttributeInstance.removeModifier(this.reinforcementCallerChargeModifierId);
+                                entityAttributeModifier = new EntityAttributeModifier("Zombie reinforcement caller charge", d - 0.05F, EntityAttributeModifier.Operation.ADDITION);
                             } else {
-                                entityAttributeModifier = new EntityAttributeModifier("Zombie reinforcement caller charge", -0.05F, EntityAttributeModifier.Operation.ADDITION);
+                                entityAttributeModifier = new EntityAttributeModifier(MathHelper.randomUuid(Random.createLocal()), "Zombie reinforcement caller charge", -0.05F, EntityAttributeModifier.Operation.ADDITION);
                             }
-                            this.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS).addPersistentModifier(entityAttributeModifier);
-                            reinforcementCallerChargeModifierId = entityAttributeModifier.getId();
+                            entityAttributeInstance.addPersistentModifier(entityAttributeModifier);
+                            this.reinforcementCallerChargeModifierId = entityAttributeModifier.getId();
 
-                            zombieEntity.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS)
+                            Objects.requireNonNull(zombieEntity.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS))
                                     .addPersistentModifier(new EntityAttributeModifier("Zombie reinforcement callee charge", -0.05F, EntityAttributeModifier.Operation.ADDITION));
                             break;
                         }
@@ -102,7 +109,9 @@ public abstract class MixinZombieEntity extends HostileEntity {
         }
     }
 
-    public EntityType<? extends ZombieEntity> getType() {
-        return (EntityType<? extends ZombieEntity>) super.getType();
+    @SuppressWarnings("unchecked")
+    @Unique
+    public <Z extends ZombieEntity> EntityType<Z> getZombieType() {
+        return (EntityType<Z>) super.getType();
     }
 }

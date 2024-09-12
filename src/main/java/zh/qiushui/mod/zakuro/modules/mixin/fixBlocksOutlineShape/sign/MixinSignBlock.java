@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import zh.qiushui.mod.zakuro.Zakuro;
 
 @Mixin(SignBlock.class)
 public abstract class MixinSignBlock extends AbstractSignBlock {
@@ -29,6 +30,14 @@ public abstract class MixinSignBlock extends AbstractSignBlock {
 
     protected MixinSignBlock(Settings settings, WoodType type) {
         super(settings, type);
+    }
+
+    @Override
+    public VoxelShape zakuro$getOutlineShapeWithOriginal(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return VoxelShapes.union(
+                this.getOutlineShape(state, world, pos, context),
+                Zakuro.config.retainBlocksOriginalInteractableRange ? super.getOutlineShape(state, world, pos, context) : VoxelShapes.empty()
+        );
     }
 
     @Override

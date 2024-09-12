@@ -19,12 +19,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import zh.qiushui.mod.zakuro.Zakuro;
+import zh.qiushui.mod.zakuro.init.ZakuroProperties;
 
 @Mixin(FenceGateBlock.class)
 public abstract class MixinFenceGateBlock extends HorizontalFacingBlock {
     @Shadow @Final public static BooleanProperty IN_WALL;
     @Shadow @Final public static BooleanProperty OPEN;
 
+    @Shadow @Final protected static VoxelShape X_AXIS_SHAPE;
+    @Shadow @Final protected static VoxelShape Z_AXIS_SHAPE;
+    @Shadow @Final protected static VoxelShape IN_WALL_X_AXIS_SHAPE;
+    @Shadow @Final protected static VoxelShape IN_WALL_Z_AXIS_SHAPE;
     @Unique private final VoxelShape[] gateShapes = this.createFenceGateShapes(false, false, false);
     @Unique private final VoxelShape[] openGateShapes = this.createFenceGateShapes(true, false, false);
     @Unique private final VoxelShape[] collisionGateShapes = this.createFenceGateShapes(false, false, true);
@@ -37,6 +42,25 @@ public abstract class MixinFenceGateBlock extends HorizontalFacingBlock {
         super(settings);
     }
 
+    @Override
+    public VoxelShape zakuro$getOutlineShapeWithOriginal(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return VoxelShapes.union(
+                state.getOutlineShape(world, pos),
+                Zakuro.config.retainBlocksOriginalInteractableRange ? this.getOriginalOutlineShape(state) : VoxelShapes.empty()
+        );
+    }
+
+    @Unique
+    private int getFacingIndex(Direction direction) {
+        return switch (direction) {
+            default -> 0;
+            case SOUTH -> 1;
+            case NORTH -> 2;
+            case EAST -> 3;
+            case WEST -> 4;
+        };
+    }
+
     @Inject(method = "getOutlineShape(" +
             "Lnet/minecraft/block/BlockState;" +
             "Lnet/minecraft/world/BlockView;" +
@@ -44,7 +68,7 @@ public abstract class MixinFenceGateBlock extends HorizontalFacingBlock {
             "Lnet/minecraft/block/ShapeContext;)" +
             "Lnet/minecraft/util/shape/VoxelShape;", at = @At("HEAD"), cancellable = true)
     public void getOutlineGateShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
-        int facing = state.get(FACING).getHorizontal() + 1;
+        int facing = getFacingIndex(state.get(FACING));
         if (state.get(IN_WALL)) {
             cir.setReturnValue(state.get(OPEN) ? inWallOpenGateShapes[facing] : inWallGateShapes[facing]);
         } else {
@@ -59,7 +83,7 @@ public abstract class MixinFenceGateBlock extends HorizontalFacingBlock {
             "Lnet/minecraft/block/ShapeContext;)" +
             "Lnet/minecraft/util/shape/VoxelShape;", at = @At("HEAD"), cancellable = true)
     public void getCollisionGateShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
-        int facing = state.get(FACING).getHorizontal() + 1;
+        int facing = getFacingIndex(state.get(FACING));
         if (state.get(IN_WALL)) {
             cir.setReturnValue(state.get(OPEN) ? VoxelShapes.empty() : inWallCollisionGateShapes[facing]);
         } else {
@@ -101,7 +125,7 @@ public abstract class MixinFenceGateBlock extends HorizontalFacingBlock {
 
         return new VoxelShape[] {
                 VoxelShapes.union(postLeftX, postRightX),
-                VoxelShapes.union(postLeftZ, postRightZ),
+                VoxelShapes.union(postLeftZ, postRightZ)
         };
     }
 
@@ -150,10 +174,10 @@ public abstract class MixinFenceGateBlock extends HorizontalFacingBlock {
     @Unique
     protected VoxelShape[] createFenceGateMiddleOpenings(double inWallDecrease, boolean isCollision) {
         return new VoxelShape[] {
-                createFenceGateMiddleOpeningZ(1.0 ,1.0, inWallDecrease, isCollision),
+                createFenceGateMiddleOpeningX(9.0 ,13.0, inWallDecrease, isCollision),
                 createFenceGateMiddleOpeningX(1.0 ,1.0, inWallDecrease, isCollision),
                 createFenceGateMiddleOpeningZ(9.0 ,13.0, inWallDecrease, isCollision),
-                createFenceGateMiddleOpeningX(9.0 ,13.0, inWallDecrease, isCollision)
+                createFenceGateMiddleOpeningZ(1.0 ,1.0, inWallDecrease, isCollision),
         };
     }
 
@@ -245,5 +269,14 @@ public abstract class MixinFenceGateBlock extends HorizontalFacingBlock {
                 middleBarLowerL, middleBarUpperL, middlePostL,
                 middleBarLowerR, middleBarUpperR, middlePostR
         );
+    }
+
+    @Unique
+    private VoxelShape getOriginalOutlineShape(BlockState state) {
+        if (state.get(IN_WALL)) {
+            return state.get(FACING).getAxis() == Direction.Axis.X ? IN_WALL_X_AXIS_SHAPE : IN_WALL_Z_AXIS_SHAPE;
+        } else {
+            return state.get(FACING).getAxis() == Direction.Axis.X ? X_AXIS_SHAPE : Z_AXIS_SHAPE;
+        }
     }
 }

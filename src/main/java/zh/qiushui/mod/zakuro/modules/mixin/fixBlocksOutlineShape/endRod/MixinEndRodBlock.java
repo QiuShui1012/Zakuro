@@ -10,11 +10,20 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import org.spongepowered.asm.mixin.Mixin;
+import zh.qiushui.mod.zakuro.Zakuro;
 
 @Mixin(EndRodBlock.class)
 public class MixinEndRodBlock extends RodBlock {
     protected MixinEndRodBlock(Settings settings) {
         super(settings);
+    }
+
+    @Override
+    public VoxelShape zakuro$getOutlineShapeWithOriginal(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return VoxelShapes.union(
+                this.getOutlineShape(state, world, pos, context),
+                Zakuro.config.retainBlocksOriginalInteractableRange ? super.getOutlineShape(state, world, pos, context) : VoxelShapes.empty()
+        );
     }
 
     @Override

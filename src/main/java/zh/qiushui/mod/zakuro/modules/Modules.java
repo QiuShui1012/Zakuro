@@ -4,7 +4,7 @@ import zh.qiushui.mod.zakuro.modules.info.FixBlocksOutlineShapeInfo;
 import zh.qiushui.mod.zakuro.modules.info.FixZombieReinforcementInfo;
 import zh.qiushui.mod.zakuro.api.module.ModuleInfo;
 import zh.qiushui.mod.zakuro.modules.info.DeleteTooExpensiveInfo;
-import zh.qiushui.mod.zakuro.modules.info.SyncFenceGatesInWallPropertyInfo;
+import zh.qiushui.mod.zakuro.modules.info.RetainBlocksOriginalInteractableRangeInfo;
 
 import java.util.List;
 
@@ -13,6 +13,6 @@ public class Modules {
             new DeleteTooExpensiveInfo(),
             new FixBlocksOutlineShapeInfo(),
             new FixZombieReinforcementInfo(),
-            new SyncFenceGatesInWallPropertyInfo()
+            new RetainBlocksOriginalInteractableRangeInfo()
     );
 }

@@ -29,6 +29,12 @@
 	"mixins": [
 		"zakuro.mixins.json"
 	],
+	"custom": {
+		"loom:injected_interfaces": {
+			"net/minecraft/class_4970": ["zh/qiushui/mod/zakuro/modules/common/common/OutlineShapeWithOriginalGetter"],
+			"net/minecraft/class_4970\u0024class_4971": ["zh/qiushui/mod/zakuro/modules/common/common/StateOutlineShapeWithOriginalGetter"]
+		}
+	},
 	"accessWidener" : "zakuro.accessWidener",
 	"depends": {
 		"fabricloader": ">=0.15.11",

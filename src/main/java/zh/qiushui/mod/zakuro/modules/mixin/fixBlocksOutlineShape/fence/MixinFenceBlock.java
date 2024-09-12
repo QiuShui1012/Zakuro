@@ -11,6 +11,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
+import zh.qiushui.mod.zakuro.Zakuro;
 
 @Mixin(FenceBlock.class)
 public abstract class MixinFenceBlock extends HorizontalConnectingBlock {
@@ -21,6 +22,14 @@ public abstract class MixinFenceBlock extends HorizontalConnectingBlock {
 
     public MixinFenceBlock(float radius1, float radius2, float boundingHeight1, float boundingHeight2, float collisionHeight, Settings settings) {
         super(radius1, radius2, boundingHeight1, boundingHeight2, collisionHeight, settings);
+    }
+
+    @Override
+    public VoxelShape zakuro$getOutlineShapeWithOriginal(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return VoxelShapes.union(
+                this.getOutlineShape(state, world, pos, context),
+                Zakuro.config.retainBlocksOriginalInteractableRange ? super.getOutlineShape(state, world, pos, context) : VoxelShapes.empty()
+        );
     }
 
     @Override

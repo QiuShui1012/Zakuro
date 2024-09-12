@@ -2,7 +2,10 @@
   "required": true,
   "package": "zh.qiushui.mod.zakuro.modules.mixin",
   "compatibilityLevel": "JAVA_17",
+  "plugin": "zh.qiushui.mod.zakuro.modules.mixin.MixinModuleConfigPlugin",
   "mixins": [
+    "common.MixinAbstractBlock",
+    "common.MixinAbstractBlockState",
     "deleteTooExpensive.MixinAnvilScreenHandler",
     "fixBlocksOutlineShape.candle.MixinCandleBlock",
     "fixBlocksOutlineShape.endRod.MixinEndRodBlock",
@@ -11,8 +14,7 @@
     "fixBlocksOutlineShape.lightningRod.MixinLightningRodBlock",
     "fixBlocksOutlineShape.sign.MixinSignBlock",
     "fixBlocksOutlineShape.signWall.MixinWallSignBlock",
-    "fixZombieReinforcement.MixinZombieEntity",
-    "syncFenceGatesInWallProperty.MixinFenceGateBlock"
+    "fixZombieReinforcement.MixinZombieEntity"
   ],
   "client": [
     "deleteTooExpensive.MixinAnvilScreen"

@@ -26,23 +26,22 @@ public class FixBlocksOutlineShapeInfo extends ModuleInfo {
 
     @Override
     protected void registerConfigs() {
-        configs.put(this.rawModuleId + ".candle", Zakuro.config.modules.fixBlocksOutlineShape.candle);
-        configs.put(this.rawModuleId + ".endRod", Zakuro.config.modules.fixBlocksOutlineShape.endRod);
-        configs.put(this.rawModuleId + ".fence", Zakuro.config.modules.fixBlocksOutlineShape.fence);
-        configs.put(this.rawModuleId + ".fenceGate", Zakuro.config.modules.fixBlocksOutlineShape.fenceGate);
-        configs.put(this.rawModuleId + ".lightningRod", Zakuro.config.modules.fixBlocksOutlineShape.lightningRod);
-        configs.put(this.rawModuleId + ".sign", Zakuro.config.modules.fixBlocksOutlineShape.sign);
-        configs.put(this.rawModuleId + ".signWall", Zakuro.config.modules.fixBlocksOutlineShape.signWall);
+        configs.put(this.rawModuleId + ".candle", Zakuro.config.fixBlocksOutlineShape.candle);
+        configs.put(this.rawModuleId + ".endRod", Zakuro.config.fixBlocksOutlineShape.endRod);
+        configs.put(this.rawModuleId + ".fence", Zakuro.config.fixBlocksOutlineShape.fence);
+        configs.put(this.rawModuleId + ".fenceGate", Zakuro.config.fixBlocksOutlineShape.fenceGate);
+        configs.put(this.rawModuleId + ".lightningRod", Zakuro.config.fixBlocksOutlineShape.lightningRod);
+        configs.put(this.rawModuleId + ".sign", Zakuro.config.fixBlocksOutlineShape.sign);
+        configs.put(this.rawModuleId + ".signWall", Zakuro.config.fixBlocksOutlineShape.signWall);
     }
 
     @Override
-    public void appendHtmlExtra(Element tBody, String htmlLangCode, String mcLangCode) {
-        super.appendHtmlExtra(tBody, htmlLangCode, mcLangCode);
-        Element tDDesc = tBody.getElementById(tBody.id() + "Desc");
+    public void appendHtmlExtra(Element li, String htmlLangCode, String mcLangCode) {
+        Element tDDesc = li.getElementById(li.id() + "Desc");
         assert tDDesc != null;
         tDDesc.append("<br>");
 
-        Element div = tDDesc.appendElement("div");
+        Element div = li.appendElement("div");
         div.id("blocksDiv");
         div.appendChild(new TextNode(HtmlI18n.translate(htmlLangCode, "fbos.blocks")));
             Element blockList = div.appendElement("ul");

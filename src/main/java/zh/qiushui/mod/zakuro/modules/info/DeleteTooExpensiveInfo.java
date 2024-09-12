@@ -12,6 +12,6 @@ public class DeleteTooExpensiveInfo extends ModuleInfo {
 
     @Override
     protected void registerConfigs() {
-        configs.put(this.rawModuleId, Zakuro.config.modules.deleteTooExpensive);
+        configs.put(this.rawModuleId, Zakuro.config.deleteTooExpensive);
     }
 }

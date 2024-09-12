@@ -8,27 +8,21 @@ import zh.qiushui.mod.zakuro.Zakuro;
 @Config(name = Zakuro.MOD_ID)
 public class ZakuroConfig implements ConfigData {
 
-    @ConfigEntry.Gui.CollapsibleObject(startExpanded = true)
-    public ModulesConfig modules = new ModulesConfig();
+    @ConfigEntry.Gui.RequiresRestart
+    @ConfigEntry.Gui.Tooltip
+    public boolean deleteTooExpensive = false;
 
-    public static class ModulesConfig {
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.Gui.Tooltip
-        public boolean deleteTooExpensive = false;
+    @ConfigEntry.Gui.CollapsibleObject
+    @ConfigEntry.Gui.RequiresRestart
+    @ConfigEntry.Gui.Tooltip
+    public FixBlocksOutlineShapeConfig fixBlocksOutlineShape = new FixBlocksOutlineShapeConfig();
 
-        @ConfigEntry.Gui.CollapsibleObject
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.Gui.Tooltip
-        public FixBlocksOutlineShapeConfig fixBlocksOutlineShape = new FixBlocksOutlineShapeConfig();
+    @ConfigEntry.Gui.RequiresRestart
+    @ConfigEntry.Gui.Tooltip
+    public boolean fixZombieReinforcement = false;
 
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.Gui.Tooltip
-        public boolean fixZombieReinforcement = false;
-
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.Gui.Tooltip
-        public boolean syncFenceGatesInWallProperty = false;
-    }
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean retainBlocksOriginalInteractableRange = false;
 
     public static class FixBlocksOutlineShapeConfig {
         public boolean candle = false;
