@@ -1,4 +1,4 @@
-package zh.qiushui.mod.zakuro.modules.registry;
+package zh.qiushui.mod.zakuro.init;
 
 import zh.qiushui.mod.zakuro.Zakuro;
 

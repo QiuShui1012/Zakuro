@@ -1,5 +1,6 @@
 {
   "option.zakuro.category": "Zakuro",
+  "option.zakuro.open_config": "打开配置界面",
   "text.autoconfig.zakuro.option.deleteTooExpensive": "deleteTooExpensive | 移除过于昂贵",
   "text.autoconfig.zakuro.option.deleteTooExpensive.@Tooltip": "这个模块移除了铁砧中“过于昂贵”的提示，并保留了物品上的经验惩罚等级。",
   "text.autoconfig.zakuro.option.fixBlocksOutlineShape": "fixBlocksOutlineShape | 修复方块轮廓形状",

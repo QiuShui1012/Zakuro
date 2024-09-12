@@ -1,6 +1,5 @@
 package zh.qiushui.mod.zakuro.modules.info;
 
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import zh.qiushui.mod.zakuro.Zakuro;
 import zh.qiushui.mod.zakuro.api.module.ModuleInfo;
 

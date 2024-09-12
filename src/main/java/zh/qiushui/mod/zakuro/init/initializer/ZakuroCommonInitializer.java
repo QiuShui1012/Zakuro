@@ -1,18 +1,16 @@
-package zh.qiushui.mod.zakuro.init;
+package zh.qiushui.mod.zakuro.init.initializer;
 
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.world.RaycastContext;
 import zh.qiushui.mod.zakuro.Zakuro;
+import zh.qiushui.mod.zakuro.init.ZakuroRegistry;
 import zh.qiushui.mod.zakuro.modules.common.common.ModulesCommon;
-import zh.qiushui.mod.zakuro.modules.registry.ZakuroRegistry;
 
-public class CommonModInitializer implements ModInitializer {
+public class ZakuroCommonInitializer implements ModInitializer {
     @Override
     public void onInitialize() {
         Zakuro.LOGGER.info("Initializing...");
         Zakuro.initConfig();
-        ZakuroRegistry.initialize();
+        ZakuroRegistry.init();
         ModulesCommon.init();
         Zakuro.LOGGER.info("Complete!");
     }

@@ -24,6 +24,7 @@ public class ZakuroDataGenerator implements DataGeneratorEntrypoint {
 		public void generateTranslations(TranslationBuilder builder) {
 			initModulesTranslation(builder);
 			builder.add(Zakuro.buildTranslationKey("option.", ".category"), Zakuro.MOD_NAME);
+			builder.add(Zakuro.buildTranslationKey("option.", ".open_config"), "Open Config Screen");
 			builder.add(Zakuro.buildTranslationKey("text.autoconfig.", ".title"), "Zakuro - Config");
 		}
 

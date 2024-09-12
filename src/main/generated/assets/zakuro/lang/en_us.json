@@ -1,5 +1,6 @@
 {
   "option.zakuro.category": "Zakuro",
+  "option.zakuro.open_config": "Open Config Screen",
   "text.autoconfig.zakuro.option.deleteTooExpensive": "deleteTooExpensive",
   "text.autoconfig.zakuro.option.deleteTooExpensive.@Tooltip": "This module removes the \"Too Expensive!\" tip on the anvil and keeps the penalty level on the item.",
   "text.autoconfig.zakuro.option.fixBlocksOutlineShape": "fixBlocksOutlineShape",

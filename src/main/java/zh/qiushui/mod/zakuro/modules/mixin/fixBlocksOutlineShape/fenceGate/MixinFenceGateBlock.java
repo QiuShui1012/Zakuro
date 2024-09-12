@@ -19,7 +19,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import zh.qiushui.mod.zakuro.Zakuro;
-import zh.qiushui.mod.zakuro.init.ZakuroProperties;
 
 @Mixin(FenceGateBlock.class)
 public abstract class MixinFenceGateBlock extends HorizontalFacingBlock {

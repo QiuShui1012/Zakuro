@@ -17,7 +17,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"zh.qiushui.mod.zakuro.init.CommonModInitializer"
+			"zh.qiushui.mod.zakuro.init.initializer.ZakuroCommonInitializer"
+		],
+		"client": [
+			"zh.qiushui.mod.zakuro.init.initializer.ZakuroClientInitializer"
 		],
 		"fabric-datagen": [
 			"zh.qiushui.mod.zakuro.datagen.ZakuroDataGenerator"

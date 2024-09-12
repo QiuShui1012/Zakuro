@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
-import zh.qiushui.mod.zakuro.Zakuro;
 
 import java.util.Objects;
 import java.util.UUID;
