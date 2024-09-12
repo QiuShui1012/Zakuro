@@ -3,7 +3,6 @@ package zh.qiushui.mod.zakuro.html;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.TextNode;
-import zh.qiushui.mod.zakuro.Zakuro;
 import zh.qiushui.mod.zakuro.api.module.ModuleInfo;
 import zh.qiushui.mod.zakuro.modules.Modules;
 
@@ -55,7 +54,7 @@ public class ModulesListHtmlGen {
 
         Element css = head.appendElement("link");
         css.attr("rel", "stylesheet");
-        css.attr("href", "css/style.css");
+        css.attr("href", "css/new_style.css");
 
         Element icon = head.appendElement("link");
         icon.attr("rel", "icon");
@@ -64,18 +63,20 @@ public class ModulesListHtmlGen {
 
         Element header = htmlEl.prependElement("header");
 
-        Element p = header.appendElement("p");
-        p.id("titleHeader");
-        p.appendChild(new TextNode("Zakuro"));
+        Element titleHeaderDiv = header.appendElement("div");
+        titleHeaderDiv.id("titleHeader");
+            Element a = titleHeaderDiv.appendElement("a");
+            a.id();
+            a.attr("href", "https://github.com/QiuShui1012/Zakuro");
+            a.appendChild(new TextNode("Zakuro"));
 
         Element languageDiv = header.appendElement("div");
         languageDiv.id("languageDiv");
-
         for (String language : HtmlI18n.getLanguages()) {
             Element aLan = languageDiv.appendElement("a");
             aLan.attr("href",
                     "index" + (language.equals("en-US") ? "" : "_" + language) + ".html");
-            aLan.appendChild(new TextNode(language));
+            aLan.appendChild(new TextNode(HtmlI18n.translate(language)));
         }
 
         Element body = html.body();
@@ -83,27 +84,20 @@ public class ModulesListHtmlGen {
         Element div = body.appendElement("div");
         div.id("bodyDiv");
 
-        Element pTitle = div.appendElement("p");
+        Element pTitle = div.appendElement("h1");
         pTitle.id("title");
         pTitle.appendChild(new TextNode(HtmlI18n.translate(htmlTrueLangCode, "title")));
 
-        Element table = div.appendElement("table");
-        table.id("modulesList");
-            Element tHead = table.appendElement("thead");
-            tHead.id("modulesListHead");
-                Element tR = tHead.appendElement("tr");
-                    Element tHName = tR.appendElement("th");
-                    tHName.id("modulesListHeadName");
-                    tHName.appendChild(new TextNode(HtmlI18n.translate(htmlTrueLangCode, "thead.name")));
-                    Element tHDesc = tR.appendElement("th");
-                    tHDesc.id("modulesListHeadDesc");
-                    tHDesc.appendChild(new TextNode(HtmlI18n.translate(htmlTrueLangCode, "thead.desc")));
+        Element modulesList = div.appendElement("ul");
+        modulesList.id("modulesList");
 
         for (ModuleInfo info : Modules.MODULE_INFO_LIST) {
-            String tBodyId = "modulesListBody" + info.getModuleAbbreviate().toUpperCase(Locale.ROOT);
-            Element tBody = table.appendElement("tbody");
-            tBody.id(tBodyId);
-            info.appendHtmlExtra(tBody, htmlTrueLangCode, mcLangCode);
+            String liClass = "modulesListLi";
+            String liId = liClass + info.getModuleAbbreviate().toUpperCase(Locale.ROOT);
+            Element li = modulesList.appendElement("li");
+            li.addClass(liClass);
+            li.id(liId);
+            info.appendHtml(li, htmlTrueLangCode, mcLangCode);
         }
 
         FileOutputStream fos = new FileOutputStream(PROJECT_PATH +

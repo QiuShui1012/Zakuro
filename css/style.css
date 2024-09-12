@@ -1,7 +1,6 @@
 html {
-    font-family: Saira, "梦源黑体 SC", 微软雅黑, sans-serif;
+    font-family: Saira, "梦源黑体 SC", "Dream Han Sans", "思源黑体 SC", "Source Han Sans", 微软雅黑, sans-serif;
     background-color: azure;
-    text-align: center;
 }
 
 header {
@@ -10,84 +9,59 @@ header {
     margin-left: -0.5%;
     text-align: left;
     box-shadow: 0 5px 5px #85ffea;
-    p {
+    div {
+        display: inline-block;
+        a {
+            text-decoration-line: none;
+        }
+    }
+    div#titleHeader {
+        float: left;
         margin-top: -0.2%;
-        margin-left: 0.4%;
-        font-weight: bold;
-        font-size: 1.7em;
+        margin-left: 0.5%;
+        a {
+            color: black;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+    }
+    div#languageDiv {
+        float: right;
+        min-width: 4%;
+        margin-right: 0.5%;
+        a {
+            color: black;
+            font-size: 1.4em;
+            margin-right: 2%;
+        }
     }
 }
 
-div#languageDiv {
-    margin-top: -4.55%;
-    margin-right: 1px;
-    float: right;
-    min-width: 10%;
-    a {
-        background-color: #d3f2f2;
-        border-radius: 7px;
-        margin-right: 5%;
-        font-size: 1.3em;
-        color: black;
-        text-decoration-line: none;
+li.modulesListLi {
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: 1.5%;
+    div {
+        font-size: medium;
+        font-weight: normal;
     }
 }
 
 div#bodyDiv {
-    background-color: #dfeded;
+    background-color: #daf8f8;
     border-radius: 5px;
-    max-width: 95%;
-    margin-top: 2.3%;
+    max-width: 98%;
+    margin-top: 0.9%;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
-}
-
-p#title {
-    margin-bottom: 0.5%;
-    font-weight: bolder;
-    font-size: 2.1em;
-}
-
-table#modulesList {
-    background-color: #cedbdb;
-    border-radius: 7px;
-    min-width: 99%;
-    margin-left: 0.5%;
-    margin-right: 0.5%;
-    table-layout: fixed;
-    tbody td {
-        background-color: #e0e4e4;
-        border-radius: 7px;
-    }
-    th {
-        font-size: 1.6em;
-    }
-    th#modulesListHeadName {
-        width: 30%;
-    }
-    th#modulesListHeadDesc {
-        width: 69%;
-    }
-    td {
-        text-align: left;
-        text-indent: 1%;
-        font-size: 1.1em;
+    h1 {
+        margin-left: 1.1%;
+        margin-top: 1.35%;
     }
 }
 
-div#blocksDiv {
-    min-width: 20%;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    ul {
-        text-indent: 0;
-        margin-top: 0.4%;
-        margin-bottom: 0.5%;
-        margin-left: -0.3%;
-        line-height: 120%;
-    }
+ul#modulesList {
+    margin-top: -1%;
 }
