@@ -54,7 +54,7 @@ public class ModulesListHtmlGen {
 
         Element css = head.appendElement("link");
         css.attr("rel", "stylesheet");
-        css.attr("href", "css/new_style.css");
+        css.attr("href", "web/css/style.css");
 
         Element icon = head.appendElement("link");
         icon.attr("rel", "icon");
@@ -76,7 +76,11 @@ public class ModulesListHtmlGen {
             Element aLan = languageDiv.appendElement("a");
             aLan.attr("href",
                     "index" + (language.equals("en-US") ? "" : "_" + language) + ".html");
-            aLan.appendChild(new TextNode(HtmlI18n.translate(language)));
+                Element imgLan = aLan.appendElement("img");
+                imgLan.attr("src",
+                        "web/img/" + language + ".svg");
+                imgLan.attr("alt",
+                        HtmlI18n.translate(language));
         }
 
         Element body = html.body();

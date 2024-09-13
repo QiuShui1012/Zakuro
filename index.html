@@ -4,50 +4,58 @@
    <a href="https://github.com/QiuShui1012/Zakuro">Zakuro</a>
   </div>
   <div id="languageDiv">
-   <a href="index.html">🇺🇸</a><a href="index_zh-CN.html">🇨🇳</a>
+   <a href="index.html"><img src="web/img/en-US.svg" alt="🇺🇸"></a><a href="index_zh-CN.html"><img src="web/img/zh-CN.svg" alt="🇨🇳"></a>
   </div>
  </header>
  <head>
   <meta charset="UTF-8">
   <title>Zakuro Modules List</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="web/css/style.css">
   <link rel="icon" type="image/png" href="src/main/resources/assets/zakuro/icon.png">
  </head>
  <body>
   <div id="bodyDiv">
    <h1 id="title">Zakuro Modules List</h1>
    <ul id="modulesList">
-    <li class="modulesListLi" id="modulesListLiDTE">deleteTooExpensive<br>
+    <li class="modulesListLi" id="modulesListLiDTE">
+     <p id="modulesListLiDTEName">deleteTooExpensive</p>
      <div id="modulesListLiDTEDesc">
       This module removes the "Too Expensive!" tip on the anvil and keeps the penalty level on the item.
      </div></li>
-    <li class="modulesListLi" id="modulesListLiFBOS">fixBlocksOutlineShape<br>
+    <li class="modulesListLi" id="modulesListLiFBOS">
+     <p id="modulesListLiFBOSName">fixBlocksOutlineShape</p>
      <div id="modulesListLiFBOSDesc">
       This module fixes the blocks' outline shape and syncs it to the blocks' model.
       <br>
-      Attention: We do not support the problem about the outline shape does not match the model due to changes in the custom resourcepacks! Please do not report it on the issues page.
-     </div>
-     <div id="blocksDiv">
-      The following are supported blocks:
-      <ul>
-       <li>Candle</li>
-       <li>End Rod</li>
-       <li>Fence</li>
-       <li>Fence Gate</li>
-       <li>Lightning Rod</li>
-       <li>Sign</li>
-       <li>Sign On The Wall</li>
-      </ul>
+      <div id="blocksDiv">
+       The following are supported blocks:
+       <ul>
+        <li>Bell</li>
+        <li>Candle</li>
+        <li>End Rod</li>
+        <li>Fence</li>
+        <li>Fence Gate</li>
+        <li>Lightning Rod</li>
+        <li>Repeater</li>
+        <li>Sign</li>
+        <li>signWall</li>
+        <li>Torch</li>
+        <li>Redstone Torch</li>
+        <li>Tripwire Hook</li>
+       </ul>
+      </div>Attention: We do not support the problem about the outline shape does not match the model due to changes in the custom resourcepacks! Please do not report it on the issues page.
      </div></li>
-    <li class="modulesListLi" id="modulesListLiFZR">fixZombieReinforcement<br>
+    <li class="modulesListLi" id="modulesListLiFZR">
+     <p id="modulesListLiFZRName">fixZombieReinforcement</p>
      <div id="modulesListLiFZRDesc">
       This module fixes the zombie reinforcement and allows zombies and their variants to spawn clones of themselves, just like Minecraft 1.21.2 version does.
      </div></li>
-    <li class="modulesListLi" id="modulesListLiRBOIR">retainBlocksOriginalInteractableRange<br>
+    <li class="modulesListLi" id="modulesListLiRBOIR">
+     <p id="modulesListLiRBOIRName">retainBlocksOriginalInteractableRange</p>
      <div id="modulesListLiRBOIRDesc">
       This module retains the original interactive range of the blocks based on the fixBlocksOutlineShape module. 
       <br>
-      If all sub functions of the fixBlocksOutlineShape module are not enabled, the module will be useless.
+      If the "init" option of the fixBlocksOutlineShape module is not enabled, the module will be useless.
      </div></li>
    </ul>
   </div>

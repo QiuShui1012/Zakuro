@@ -43,52 +43,31 @@ public class FixBlocksOutlineShapeInfo extends ModuleInfo {
         assert tDDesc != null;
         tDDesc.append("<br>");
 
-        Element div = li.appendElement("div");
+        Element div = tDDesc.appendElement("div");
         div.id("blocksDiv");
         div.appendChild(new TextNode(HtmlI18n.translate(htmlLangCode, "fbos.blocks")));
             Element blockList = div.appendElement("ul");
-                Element candle = blockList.appendElement("li");
-                candle.appendChild(new TextNode(Zakuro.translate(
-                        mcLangCode,
-                        this.moduleNameTranslationKey + ".candle", "Candle"
-                )));
-
-                Element endRod = blockList.appendElement("li");
-                endRod.appendChild(new TextNode(Zakuro.translate(
-                        mcLangCode,
-                        this.moduleNameTranslationKey + ".endRod", "End Rod"
-                )));
-
-                Element fence = blockList.appendElement("li");
-                fence.appendChild(new TextNode(Zakuro.translate(
-                        mcLangCode,
-                        this.moduleNameTranslationKey + ".fence", "Fence"
-                )));
-
-                Element fenceGate = blockList.appendElement("li");
-                fenceGate.appendChild(new TextNode(Zakuro.translate(
-                        mcLangCode,
-                        this.moduleNameTranslationKey + ".fenceGate", "Fence Gate"
-                )));
-
-                Element lightningRod = blockList.appendElement("li");
-                lightningRod.appendChild(new TextNode(Zakuro.translate(
-                        mcLangCode,
-                        this.moduleNameTranslationKey + ".lightningRod", "Lightning Rod"
-                )));
-
-                Element sign = blockList.appendElement("li");
-                sign.appendChild(new TextNode(Zakuro.translate(
-                        mcLangCode,
-                        this.moduleNameTranslationKey + ".sign", "Sign"
-                )));
-
-                Element signWall = blockList.appendElement("li");
-                signWall.appendChild(new TextNode(Zakuro.translate(
-                        mcLangCode,
-                        this.moduleNameTranslationKey + ".signWall", "Sign On The Wall"
-                )));
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.bell", "Bell");
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.candle", "Candle");
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.endRod", "End Rod");
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.fence", "Fence");
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.fenceGate", "Fence Gate");
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.lightningRod", "Lightning Rod");
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.repeater", "Repeater");
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.sign", "Sign");
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.signWall", "signWall");
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.torch", "Torch");
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.torchRedstone", "Redstone Torch");
+                buildBlocksSubmodule(blockList, mcLangCode, "blocks.tripwireHook", "Tripwire Hook");
 
         tDDesc.appendChild(new TextNode(HtmlI18n.translate(htmlLangCode, "fbos.note")));
+    }
+
+    private void buildBlocksSubmodule(Element ul, String mcLangCode, String suffix, String defaultValue) {
+        Element redstoneTorch = ul.appendElement("li");
+        redstoneTorch.appendChild(new TextNode(Zakuro.translate(
+                mcLangCode,
+                this.moduleNameTranslationKey + "." + suffix, defaultValue
+        )));
     }
 }

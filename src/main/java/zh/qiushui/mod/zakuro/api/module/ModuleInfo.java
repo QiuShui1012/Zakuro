@@ -95,8 +95,10 @@ public abstract class ModuleInfo {
     }
 
     public void appendHtml(Element li, String htmlLangCode, String mcLangCode) {
-        Element title = li.appendChild(new TextNode(Zakuro.translate(mcLangCode, this.moduleNameTranslationKey, this.getRawModuleId())));
-        li.append("<br>");
+        Element name = li.appendElement("p");
+        name.id(li.id() + "Name");
+        name.appendChild(new TextNode(Zakuro.translate(mcLangCode, this.moduleNameTranslationKey, this.getRawModuleId())));
+
         Element desc = li.appendElement("div");
         desc.id(li.id() + "Desc");
         for (int i = 0; i < this.moduleDescriptionTranslationKey.length; i++) {

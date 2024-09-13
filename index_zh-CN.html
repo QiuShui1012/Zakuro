@@ -4,50 +4,58 @@
    <a href="https://github.com/QiuShui1012/Zakuro">Zakuro</a>
   </div>
   <div id="languageDiv">
-   <a href="index.html">🇺🇸</a><a href="index_zh-CN.html">🇨🇳</a>
+   <a href="index.html"><img src="web/img/en-US.svg" alt="🇺🇸"></a><a href="index_zh-CN.html"><img src="web/img/zh-CN.svg" alt="🇨🇳"></a>
   </div>
  </header>
  <head>
   <meta charset="UTF-8">
   <title>Zakuro模块列表</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="web/css/style.css">
   <link rel="icon" type="image/png" href="src/main/resources/assets/zakuro/icon.png">
  </head>
  <body>
   <div id="bodyDiv">
    <h1 id="title">Zakuro模块列表</h1>
    <ul id="modulesList">
-    <li class="modulesListLi" id="modulesListLiDTE">deleteTooExpensive | 移除过于昂贵<br>
+    <li class="modulesListLi" id="modulesListLiDTE">
+     <p id="modulesListLiDTEName">deleteTooExpensive | 移除过于昂贵</p>
      <div id="modulesListLiDTEDesc">
       这个模块移除了铁砧中“过于昂贵”的提示，并保留了物品上的经验惩罚等级。
      </div></li>
-    <li class="modulesListLi" id="modulesListLiFBOS">fixBlocksOutlineShape | 修复方块轮廓形状<br>
+    <li class="modulesListLi" id="modulesListLiFBOS">
+     <p id="modulesListLiFBOSName">fixBlocksOutlineShape | 修复方块轮廓形状</p>
      <div id="modulesListLiFBOSDesc">
       这个模块修复了一些方块的轮廓形状，并将其同步于其方块模型。
       <br>
-      注意：我们不支持由于因自定义资源包更改模型而导致的轮廓形状与模型不匹配的问题！请不要将其报告至issues页面。
-     </div>
-     <div id="blocksDiv">
-      以下是支持的方块：
-      <ul>
-       <li>Candle | 蜡烛</li>
-       <li>End Rod | 末地烛</li>
-       <li>Fence | 栅栏</li>
-       <li>Fence Gate | 栅栏门</li>
-       <li>Lightning Rod | 避雷针</li>
-       <li>Sign | 告示牌</li>
-       <li>Sign On The Wall | 墙上的告示牌</li>
-      </ul>
+      <div id="blocksDiv">
+       以下是支持的方块：
+       <ul>
+        <li>Bell | 钟</li>
+        <li>Candle | 蜡烛</li>
+        <li>End Rod | 末地烛</li>
+        <li>Fence | 栅栏</li>
+        <li>Fence Gate | 栅栏门</li>
+        <li>Lightning Rod | 避雷针</li>
+        <li>Repeater | 红石中继器</li>
+        <li>Sign | 告示牌</li>
+        <li>Sign On The Wall | 墙上的告示牌</li>
+        <li>Torch | 火把</li>
+        <li>Redstone Torch | 红石火把</li>
+        <li>Tripwire Hook | 绊线钩</li>
+       </ul>
+      </div>注意：我们不支持由于因自定义资源包更改模型而导致的轮廓形状与模型不匹配的问题！请不要将其报告至issues页面。
      </div></li>
-    <li class="modulesListLi" id="modulesListLiFZR">fixZombieReinforcement | 修复僵尸增援机制<br>
+    <li class="modulesListLi" id="modulesListLiFZR">
+     <p id="modulesListLiFZRName">fixZombieReinforcement | 修复僵尸增援机制</p>
      <div id="modulesListLiFZRDesc">
       这个模块修复了僵尸增援机制，并允许僵尸和其变种生成它们的同类，就像我的世界1.21.2版本一样。
      </div></li>
-    <li class="modulesListLi" id="modulesListLiRBOIR">retainBlocksOriginalInteractableRange | 保留方块原始可交互范围<br>
+    <li class="modulesListLi" id="modulesListLiRBOIR">
+     <p id="modulesListLiRBOIRName">retainBlocksOriginalInteractableRange | 保留方块原始可交互范围</p>
      <div id="modulesListLiRBOIRDesc">
       这个模块在fixBlocksOutlineShape模块的基础上保留了原始方块的可交互范围。
       <br>
-      如果fixBlocksOutlineShape模块的子功能全部未启用，则该模块毫无作用。
+      如果fixBlocksOutlineShape模块的“初始化”选项未启用，则该模块毫无作用。
      </div></li>
    </ul>
   </div>
