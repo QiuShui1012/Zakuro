@@ -35,7 +35,7 @@ public abstract class ModuleInfo {
         }
 
         if (Zakuro.config != null) {
-            this.registerConfigs();
+            this.registerMixinConfigs();
         }
     }
 
@@ -68,7 +68,7 @@ public abstract class ModuleInfo {
     public void initEnglishModuleExtra(FabricLanguageProvider.TranslationBuilder builder) {
     }
 
-    protected abstract void registerConfigs();
+    protected abstract void registerMixinConfigs();
 
     public boolean shouldApplyMixin(String name) {
         return configs.get(name);

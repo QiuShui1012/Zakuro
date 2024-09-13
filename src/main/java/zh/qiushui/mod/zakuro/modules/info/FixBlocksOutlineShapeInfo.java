@@ -15,24 +15,26 @@ public class FixBlocksOutlineShapeInfo extends ModuleInfo {
 
     @Override
     public void initEnglishModuleExtra(FabricLanguageProvider.TranslationBuilder builder) {
-        builder.add(this.moduleNameTranslationKey + ".candle", "Candle");
-        builder.add(this.moduleNameTranslationKey + ".endRod", "End Rod");
-        builder.add(this.moduleNameTranslationKey + ".fence", "Fence");
-        builder.add(this.moduleNameTranslationKey + ".fenceGate", "Fence Gate");
-        builder.add(this.moduleNameTranslationKey + ".lightningRod", "Lightning Rod");
-        builder.add(this.moduleNameTranslationKey + ".sign", "Sign");
-        builder.add(this.moduleNameTranslationKey + ".signWall", "Sign On The Wall");
+        builder.add(this.moduleNameTranslationKey + ".aaaInit", "Init");
+        builder.add(this.moduleNameTranslationKey + ".aaaInit.@Tooltip", "Enable this option to make other options in this module effective.");
+        builder.add(this.moduleNameTranslationKey + ".blocks", "Blocks");
+        builder.add(this.moduleNameTranslationKey + ".blocks.bell", "Bell");
+        builder.add(this.moduleNameTranslationKey + ".blocks.candle", "Candle");
+        builder.add(this.moduleNameTranslationKey + ".blocks.endRod", "End Rod");
+        builder.add(this.moduleNameTranslationKey + ".blocks.fence", "Fence");
+        builder.add(this.moduleNameTranslationKey + ".blocks.fenceGate", "Fence Gate");
+        builder.add(this.moduleNameTranslationKey + ".blocks.lightningRod", "Lightning Rod");
+        builder.add(this.moduleNameTranslationKey + ".blocks.repeater", "Repeater");
+        builder.add(this.moduleNameTranslationKey + ".blocks.sign", "Sign");
+        builder.add(this.moduleNameTranslationKey + ".blocks.signWall", "signWall");
+        builder.add(this.moduleNameTranslationKey + ".blocks.torch", "Torch");
+        builder.add(this.moduleNameTranslationKey + ".blocks.torchRedstone", "Redstone Torch");
+        builder.add(this.moduleNameTranslationKey + ".blocks.tripwireHook", "Tripwire Hook");
     }
 
     @Override
-    protected void registerConfigs() {
-        configs.put(this.rawModuleId + ".candle", Zakuro.config.fixBlocksOutlineShape.candle);
-        configs.put(this.rawModuleId + ".endRod", Zakuro.config.fixBlocksOutlineShape.endRod);
-        configs.put(this.rawModuleId + ".fence", Zakuro.config.fixBlocksOutlineShape.fence);
-        configs.put(this.rawModuleId + ".fenceGate", Zakuro.config.fixBlocksOutlineShape.fenceGate);
-        configs.put(this.rawModuleId + ".lightningRod", Zakuro.config.fixBlocksOutlineShape.lightningRod);
-        configs.put(this.rawModuleId + ".sign", Zakuro.config.fixBlocksOutlineShape.sign);
-        configs.put(this.rawModuleId + ".signWall", Zakuro.config.fixBlocksOutlineShape.signWall);
+    protected void registerMixinConfigs() {
+        configs.put(this.rawModuleId + ".init", Zakuro.config.fixBlocksOutlineShape.aaaInit);
     }
 
     @Override

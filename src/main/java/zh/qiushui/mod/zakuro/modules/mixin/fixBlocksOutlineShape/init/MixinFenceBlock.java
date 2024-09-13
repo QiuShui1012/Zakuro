@@ -1,4 +1,4 @@
-package zh.qiushui.mod.zakuro.modules.mixin.fixBlocksOutlineShape.fence;
+package zh.qiushui.mod.zakuro.modules.mixin.fixBlocksOutlineShape.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -27,19 +27,19 @@ public abstract class MixinFenceBlock extends HorizontalConnectingBlock {
     @Override
     public VoxelShape zakuro$getOutlineShapeWithOriginal(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.union(
-                this.getOutlineShape(state, world, pos, context),
-                Zakuro.config.retainBlocksOriginalInteractableRange ? super.getOutlineShape(state, world, pos, context) : VoxelShapes.empty()
+                Zakuro.config.retainBlocksOriginalInteractableRange ? super.getOutlineShape(state, world, pos, context) : VoxelShapes.empty(),
+                state.getOutlineShape(world, pos, context)
         );
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return this.outlineFenceShapes[this.getShapeIndex(state)];
+        return Zakuro.config.fixBlocksOutlineShape.blocks.fence ? this.outlineFenceShapes[this.getShapeIndex(state)] : super.getOutlineShape(state, world, pos, context);
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return this.collisionFenceShapes[this.getShapeIndex(state)];
+        return Zakuro.config.fixBlocksOutlineShape.blocks.fence ? this.collisionFenceShapes[this.getShapeIndex(state)] : super.getCollisionShape(state, world, pos, context);
     }
 
     @Unique

@@ -1,4 +1,4 @@
-package zh.qiushui.mod.zakuro.modules.mixin.fixBlocksOutlineShape.lightningRod;
+package zh.qiushui.mod.zakuro.modules.mixin.fixBlocksOutlineShape.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -21,14 +21,14 @@ public class MixinLightningRodBlock extends RodBlock {
     @Override
     public VoxelShape zakuro$getOutlineShapeWithOriginal(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.union(
-                this.getOutlineShape(state, world, pos, context),
-                Zakuro.config.retainBlocksOriginalInteractableRange ? super.getOutlineShape(state, world, pos, context) : VoxelShapes.empty()
+                Zakuro.config.retainBlocksOriginalInteractableRange ? super.getOutlineShape(state, world, pos, context) : VoxelShapes.empty(),
+                state.getOutlineShape(world, pos, context)
         );
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return switch (state.get(FACING).getAxis()) {
+        return Zakuro.config.fixBlocksOutlineShape.blocks.lightningRod ? super.getOutlineShape(state, world, pos, context) : switch (state.get(FACING).getAxis()) {
             default -> switch (state.get(FACING).getDirection()) {
                 case POSITIVE -> VoxelShapes.union(
                         Block.createCuboidShape(12.0D, 6.0D, 6.0D, 16.0D, 10.0D, 10.0D),

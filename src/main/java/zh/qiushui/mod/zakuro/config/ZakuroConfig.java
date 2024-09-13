@@ -13,7 +13,6 @@ public class ZakuroConfig implements ConfigData {
     public boolean deleteTooExpensive = false;
 
     @ConfigEntry.Gui.CollapsibleObject
-    @ConfigEntry.Gui.RequiresRestart
     @ConfigEntry.Gui.Tooltip
     public FixBlocksOutlineShapeConfig fixBlocksOutlineShape = new FixBlocksOutlineShapeConfig();
 
@@ -25,12 +24,26 @@ public class ZakuroConfig implements ConfigData {
     public boolean retainBlocksOriginalInteractableRange = false;
 
     public static class FixBlocksOutlineShapeConfig {
+        @ConfigEntry.Gui.RequiresRestart
+        @ConfigEntry.Gui.Tooltip
+        public boolean aaaInit = false;
+
+        @ConfigEntry.Gui.CollapsibleObject
+        public BlocksConfig blocks = new BlocksConfig();
+    }
+
+    public static class BlocksConfig {
+        public boolean bell = false;
         public boolean candle = false;
         public boolean endRod = false;
         public boolean fence = false;
         public boolean fenceGate = false;
         public boolean lightningRod = false;
+        public boolean repeater = false;
         public boolean sign = false;
         public boolean signWall = false;
+        public boolean torch = false;
+        public boolean torchRedstone = false;
+        public boolean tripwireHook = false;
     }
 }

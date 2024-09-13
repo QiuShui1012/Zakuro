@@ -1,4 +1,4 @@
-package zh.qiushui.mod.zakuro.modules.mixin.fixBlocksOutlineShape.signWall;
+package zh.qiushui.mod.zakuro.modules.mixin.fixBlocksOutlineShape.init;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -50,8 +50,8 @@ public abstract class MixinWallSignBlock extends AbstractSignBlock {
     @Override
     public VoxelShape zakuro$getOutlineShapeWithOriginal(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.union(
-                this.getOutlineShape(state, world, pos, context),
-                Zakuro.config.retainBlocksOriginalInteractableRange ? this.getOriginalOutlineShape(state) : VoxelShapes.empty()
+                Zakuro.config.retainBlocksOriginalInteractableRange ? this.getOriginalOutlineShape(state) : VoxelShapes.empty(),
+                state.getOutlineShape(world, pos, context)
         );
     }
 
@@ -65,7 +65,7 @@ public abstract class MixinWallSignBlock extends AbstractSignBlock {
                     target = "Lnet/minecraft/block/WallSignBlock;FACING_TO_SHAPE:Ljava/util/Map;",
                     opcode = Opcodes.GETSTATIC))
     public Map<Direction, VoxelShape> getFacingToShape() {
-        return FIXED_FACING_TO_SHAPE;
+        return Zakuro.config.fixBlocksOutlineShape.blocks.signWall ? FIXED_FACING_TO_SHAPE : FACING_TO_SHAPE;
     }
 
     @Unique

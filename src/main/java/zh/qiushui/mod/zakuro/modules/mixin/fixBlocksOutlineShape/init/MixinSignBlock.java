@@ -1,4 +1,4 @@
-package zh.qiushui.mod.zakuro.modules.mixin.fixBlocksOutlineShape.sign;
+package zh.qiushui.mod.zakuro.modules.mixin.fixBlocksOutlineShape.init;
 
 import net.minecraft.block.AbstractSignBlock;
 import net.minecraft.block.Block;
@@ -35,14 +35,14 @@ public abstract class MixinSignBlock extends AbstractSignBlock {
     @Override
     public VoxelShape zakuro$getOutlineShapeWithOriginal(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.union(
-                this.getOutlineShape(state, world, pos, context),
-                Zakuro.config.retainBlocksOriginalInteractableRange ? super.getOutlineShape(state, world, pos, context) : VoxelShapes.empty()
+                Zakuro.config.retainBlocksOriginalInteractableRange ? super.getOutlineShape(state, world, pos, context) : VoxelShapes.empty(),
+                state.getOutlineShape(world, pos, context)
         );
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return switch (state.get(ROTATION)) {
+        return Zakuro.config.fixBlocksOutlineShape.blocks.sign ? super.getOutlineShape(state, world, pos, context) : switch (state.get(ROTATION)) {
             default -> SHAPE;
             case 0, 8 -> X_AXIS_SHAPE;
             case 4, 12 -> Z_AXIS_SHAPE;

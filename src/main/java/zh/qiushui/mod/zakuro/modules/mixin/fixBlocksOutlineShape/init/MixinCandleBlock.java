@@ -1,4 +1,4 @@
-package zh.qiushui.mod.zakuro.modules.mixin.fixBlocksOutlineShape.candle;
+package zh.qiushui.mod.zakuro.modules.mixin.fixBlocksOutlineShape.init;
 
 import net.minecraft.block.AbstractCandleBlock;
 import net.minecraft.block.Block;
@@ -54,8 +54,8 @@ public abstract class MixinCandleBlock extends AbstractCandleBlock {
     @Override
     public VoxelShape zakuro$getOutlineShapeWithOriginal(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.union(
-                this.getOutlineShape(state, world, pos, context),
-                Zakuro.config.retainBlocksOriginalInteractableRange ? this.getOriginalOutlineShape(state) : VoxelShapes.empty()
+                Zakuro.config.retainBlocksOriginalInteractableRange ? this.getOriginalOutlineShape(state) : VoxelShapes.empty(),
+                state.getOutlineShape(world, pos, context)
         );
     }
 
@@ -66,20 +66,12 @@ public abstract class MixinCandleBlock extends AbstractCandleBlock {
             "Lnet/minecraft/block/ShapeContext;)" +
             "Lnet/minecraft/util/shape/VoxelShape;", at = @At(value = "HEAD"), cancellable = true)
     public void getOutlineCandleShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
-        switch (state.get(CANDLES)) {
-            case 1:
-            default:
-                cir.setReturnValue(ONE_CANDLE_SHAPE);
-                break;
-            case 2:
-                cir.setReturnValue(TWO_CANDLES_SHAPES);
-                break;
-            case 3:
-                cir.setReturnValue(THREE_CANDLES_SHAPES);
-                break;
-            case 4:
-                cir.setReturnValue(FOUR_CANDLES_SHAPES);
-        }
+        cir.setReturnValue(switch (state.get(CANDLES)) {
+            default -> ONE_CANDLE_SHAPE;
+            case 2 -> Zakuro.config.fixBlocksOutlineShape.blocks.candle ? TWO_CANDLES_SHAPES : TWO_CANDLES_SHAPE;
+            case 3 -> Zakuro.config.fixBlocksOutlineShape.blocks.candle ? THREE_CANDLES_SHAPES : THREE_CANDLES_SHAPE;
+            case 4 -> Zakuro.config.fixBlocksOutlineShape.blocks.candle ? FOUR_CANDLES_SHAPES : FOUR_CANDLES_SHAPE;
+        });
     }
 
     @Unique

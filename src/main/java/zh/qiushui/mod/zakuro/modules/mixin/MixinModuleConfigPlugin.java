@@ -28,10 +28,10 @@ public class MixinModuleConfigPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (mixinClassName.startsWith("zh.qiushui.mod.zakuro.modules.mixin.common")) {
             return true;
+        } else {
+            String basePackageName = ModuleUtil.calculateModuleName(this.getClass(), mixinClassName);
+            return ModuleUtil.shouldApplyMixin(basePackageName);
         }
-
-        String basePackageName = ModuleUtil.calculateModuleName(this.getClass(), mixinClassName);
-        return ModuleUtil.shouldApplyMixin(basePackageName);
     }
 
     @Override
