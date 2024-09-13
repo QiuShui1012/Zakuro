@@ -57,9 +57,9 @@ public class ModulesListHtmlGen {
         css.attr("href", "web/css/style.css");
 
         Element icon = head.appendElement("link");
-        icon.attr("rel", "icon");
-        icon.attr("type", "image/png");
-        icon.attr("href", "src/main/resources/assets/zakuro/icon.png");
+        icon.attr("rel", "Shortcut Icon");
+        icon.attr("type", "image/x-icon");
+        icon.attr("href", "web/img/icon.ico");
 
         Element header = htmlEl.prependElement("header");
 
